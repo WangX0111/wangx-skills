@@ -1,0 +1,17 @@
+{
+  "name": "visual-explainer-skill",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A skills.sh-compatible skill for generating interactive visual explainers.",
+  "type": "module",
+  "scripts": {
+    "check": "node scripts/validate-skill.mjs"
+  },
+  "keywords": [
+    "skill",
+    "skills.sh",
+    "codex",
+    "visual-explainer"
+  ],
+  "license": "UNLICENSED"
+}
