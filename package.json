@@ -1,8 +1,8 @@
 {
-  "name": "visual-explainer-skill",
+  "name": "wangx-skills",
   "version": "0.1.0",
   "private": true,
-  "description": "A skills.sh-compatible skill for generating interactive visual explainers.",
+  "description": "A collection of skills.sh-compatible agent skills.",
   "type": "module",
   "scripts": {
     "check": "node scripts/validate-skill.mjs"
@@ -11,7 +11,9 @@
     "skill",
     "skills.sh",
     "codex",
-    "visual-explainer"
+    "visual-explainer",
+    "wechat",
+    "official-account"
   ],
   "license": "UNLICENSED"
 }

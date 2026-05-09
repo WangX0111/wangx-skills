@@ -1,19 +1,26 @@
-# visual-explainer
+# wangx-skills
 
-An agent skill for creating interactive HTML animation explainers from complex concepts. It guides the agent through audience discovery, knowledge-gap probing, outline confirmation, and single-file HTML generation.
+Personal agent skills.
+
+## Skills
+
+- `visual-explainer`: create interactive HTML animation explainers from complex concepts.
+- `ultimate-wechat-official-account-pipeline`: run a full WeChat Official Account content pipeline for writing, rewriting, illustration, formatting, and publishing workflows.
 
 ## Install
 
-After this repository is pushed to GitHub, install it with:
+Install a skill from this repository with:
 
 ```bash
-npx skills add <your-github-username>/<this-repo>@visual-explainer
+npx skills add WangX0111/wangx-skills@visual-explainer
+npx skills add WangX0111/wangx-skills@ultimate-wechat-official-account-pipeline
 ```
 
 For a global install:
 
 ```bash
-npx skills add <your-github-username>/<this-repo>@visual-explainer -g -y
+npx skills add WangX0111/wangx-skills@visual-explainer -g -y
+npx skills add WangX0111/wangx-skills@ultimate-wechat-official-account-pipeline -g -y
 ```
 
 ## Structure
@@ -21,9 +28,13 @@ npx skills add <your-github-username>/<this-repo>@visual-explainer -g -y
 ```text
 .
 ├── visual-explainer/
+│   └── SKILL.md
+├── ultimate-wechat-official-account-pipeline/
 │   ├── SKILL.md
-│   └── agents/
-│       └── openai.yaml
+│   ├── config/
+│   ├── feedback/
+│   ├── knowledge/
+│   └── references/
 ├── scripts/
 │   └── validate-skill.mjs
 ├── package.json
@@ -37,5 +48,3 @@ Validate the skill metadata before publishing:
 ```bash
 npm run check
 ```
-
-The required publish artifact is `visual-explainer/SKILL.md`. The `agents/openai.yaml` file adds UI-facing metadata for hosts that support it.

@@ -1,8 +1,15 @@
-import { readFileSync, statSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
 
 const skillDirs = process.argv.slice(2);
-const targets = skillDirs.length > 0 ? skillDirs : ["visual-explainer"];
+const ignoredTopLevelDirs = new Set([".git", ".github", ".agents", ".codex", "node_modules", "scripts"]);
+const targets = skillDirs.length > 0
+  ? skillDirs
+  : readdirSync(".", { withFileTypes: true })
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => entry.name)
+    .filter((name) => !ignoredTopLevelDirs.has(name))
+    .filter((name) => existsSync(join(name, "SKILL.md")));
 
 function fail(message) {
   console.error(`ERROR: ${message}`);
@@ -77,12 +84,8 @@ for (const skillDir of targets) {
   }
 
   const openaiYaml = join(skillDir, "agents", "openai.yaml");
-  try {
-    if (!statSync(openaiYaml).isFile()) {
-      fail(`${openaiYaml} is not a file`);
-    }
-  } catch {
-    fail(`${openaiYaml} does not exist`);
+  if (existsSync(openaiYaml) && !statSync(openaiYaml).isFile()) {
+    fail(`${openaiYaml} is not a file`);
   }
 }
 

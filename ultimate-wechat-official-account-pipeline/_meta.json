@@ -1,0 +1,30 @@
+{
+    "name": "ultimate-wechat-official-account-pipeline",
+    "version": "2.1.0",
+    "description": "微信公众号全链路内容运营引擎。用户只需提供输入并确认选择，即可产出完整公众号文章。具备可插拔后端能力层和自进化机制。",
+    "author": "AI Agent",
+    "dependencies": [
+        "baoyu-cover-image",
+        "baoyu-article-illustrator",
+        "baoyu-post-to-wechat",
+        "baoyu-imagine",
+        "baoyu-markdown-to-html",
+        "xxb-tavily-search",
+        "xxb-qwen-image",
+        "xxb-nanobanana2-image",
+        "official-account-assistant"
+    ],
+    "tags": [
+        "wechat",
+        "official-account",
+        "writing",
+        "publishing",
+        "content-creation",
+        "pipeline",
+        "content-reconstruction",
+        "pluggable-backends"
+    ],
+    "languages": [
+        "zh"
+    ]
+}

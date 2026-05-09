@@ -1,0 +1,95 @@
+# 微信公众号全链路运营引擎 - 账号配置模板
+# 使用说明：
+# 1. 复制此文件为 accounts.yaml
+# 2. 填写你的公众号信息
+# 3. 将 accounts.yaml 放在 config/ 目录下
+# ⚠️ 安全提示：请勿将包含 AppSecret 的配置文件提交到公开仓库
+
+# 全局默认设置
+defaults:
+  publish_method: api              # 发布方式: api | browser
+  default_theme: grace             # 默认排版主题
+  default_color: blue              # 默认配色
+  need_open_comment: true          # 是否开启评论
+  only_fans_can_comment: false     # 是否仅粉丝可评论
+  ai_deflavor_level: 3             # AI降味强度: 1(轻微) - 5(完全重写)
+  default_word_count: 3000         # 默认目标字数
+  auto_generate_cover: true        # 是否自动生成封面
+  auto_generate_images: false      # 是否自动为正文配图
+  output_dir: ""                   # 全局默认输出目录，空则自动推断（./wechat-pipeline/{slug}/）
+
+# 风格预设 (style_preset)
+# 可选: khazix | formal | lifestyle | business | custom
+# khazix: 卡兹克风格，适合科技/AI/产品评测，活人感强
+# formal: 正式科普风，适合行业报告/深度科普
+# lifestyle: 轻松生活风，适合生活/情感/随笔
+# business: 商业分析风，适合财经/管理/商业
+# custom: 自定义，通过学习历史文章生成
+style_preset: khazix
+
+# 反馈收集与自进化配置
+evolution:
+  enabled: true                   # 是否启用自进化机制
+  collect_explicit_feedback: true # 是否主动询问用户评价
+  collect_implicit_feedback: true # 是否通过用户行为推断反馈
+  auto_adjust_weights: true       # 是否自动调整路由权重
+  auto_adjust_threshold: true     # 是否自动调整质检阈值
+  weight_change_limit: 0.3        # 单次权重变化上限（防止异常波动）
+  log_retention_days: 90          # 进化日志保留天数
+
+# 可插拔后端能力层配置
+# Pipeline 根据用户期望的效果自动路由到最优后端 Skill
+# 用户按「效果」选择，而非按「Skill 名称」选择
+backends:
+  # AI 图像生成（正文配图）
+  # auto: 自动根据内容类型选择
+  # best_quality: 最高质量（baoyu-imagine: GPT Image 2 / DALL-E 3）
+  # chinese_friendly: 中文提示词友好（xxb-qwen-image）
+  # image_to_image: 图生图支持（xxb-nanobanana2-image）
+  # fast: 快速低成本（baoyu-imagine 轻量模式）
+  image_generation: auto
+
+  # 封面设计
+  # auto: 根据文章类型自动选择
+  # professional: 专业封面（baoyu-cover-image: 11 调色板 × 7 渲染风格）
+  # ai_custom: AI 自定义生成（baoyu-imagine）
+  cover_image: auto
+
+  # 排版渲染（Markdown → 微信 HTML）
+  # auto: 根据主题配置自动选择
+  # wechat_theme: 94 种微信主题排版（baoyu-markdown-to-html）
+  # assistant: 公众号助手一体化（official-account-assistant）
+  typesetting: auto
+
+  # 发布通道
+  # auto: 根据 publish_method 自动选择
+  # api: API 发布（baoyu-post-to-wechat API 模式）
+  # browser: 浏览器发布（baoyu-post-to-wechat Browser 模式）
+  # assistant: 公众号助手（official-account-assistant）
+  publish: auto
+
+# 多账号配置
+accounts:
+  - name: "示例公众号"
+    alias: "example"
+    appid: "wx0000000000000000"
+    appsecret: "your-app-secret-here"
+    default_author: "作者名"
+    style_preset: khazix
+    default_theme: "科技蓝"
+    default_color: "blue"
+    chrome_profile: "/path/to/chrome/profile"
+    # 账号专属默认值（覆盖全局）
+    need_open_comment: true
+    only_fans_can_comment: false
+    output_dir: ""                  # 账号专属输出目录，空则使用全局默认或自动推断
+
+  # 可添加更多账号...
+  # - name: "第二个公众号"
+  #   alias: "second"
+  #   appid: "wx..."
+  #   appsecret: "..."
+  #   default_author: "作者名"
+  #   style_preset: lifestyle
+  #   default_theme: "人言兑"
+

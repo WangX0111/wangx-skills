@@ -1,0 +1,148 @@
+# 第三方 Skill 反馈评价系统
+# 本文件由 Pipeline Skill 自动维护，记录每次调用第三方 Skill 的用户反馈
+# 用于优化后端路由决策，实现效果驱动的 Skill 自进化
+# ⚠️ 请勿手动修改，除非你知道自己在做什么
+
+# 评分维度说明：
+# - quality: 输出质量（1-5星）
+# - speed: 响应速度（1-5星）
+# - match: 与期望效果的匹配度（1-5星）
+# - success: 是否成功完成任务（true/false）
+# - user_tags: 用户打上的标签（如「超预期」「需改进」「风格不对」）
+# - context: 调用场景（配图/封面/排版/发布/搜索）
+
+# 数据结构：
+# ratings:
+#   - skill_name: 第三方 Skill 名称
+#     capability: 能力域（image_generation / cover_image / typesetting / publish / search）
+#     total_calls: 总调用次数
+#     success_count: 成功次数
+#     fail_count: 失败次数
+#     avg_quality: 平均质量评分
+#     avg_speed: 平均速度评分
+#     avg_match: 平均匹配度评分
+#     user_tags: []  # 聚合的用户标签
+#     history: []    # 每次调用的详细记录
+
+ratings:
+  - skill_name: baoyu-imagine
+    capability: image_generation
+    total_calls: 0
+    success_count: 0
+    fail_count: 0
+    avg_quality: 0
+    avg_speed: 0
+    avg_match: 0
+    user_tags: []
+    history: []
+
+  - skill_name: xxb-qwen-image
+    capability: image_generation
+    total_calls: 0
+    success_count: 0
+    fail_count: 0
+    avg_quality: 0
+    avg_speed: 0
+    avg_match: 0
+    user_tags: []
+    history: []
+
+  - skill_name: xxb-nanobanana2-image
+    capability: image_generation
+    total_calls: 0
+    success_count: 0
+    fail_count: 0
+    avg_quality: 0
+    avg_speed: 0
+    avg_match: 0
+    user_tags: []
+    history: []
+
+  - skill_name: baoyu-cover-image
+    capability: cover_image
+    total_calls: 0
+    success_count: 0
+    fail_count: 0
+    avg_quality: 0
+    avg_speed: 0
+    avg_match: 0
+    user_tags: []
+    history: []
+
+  - skill_name: baoyu-article-illustrator
+    capability: illustration
+    total_calls: 0
+    success_count: 0
+    fail_count: 0
+    avg_quality: 0
+    avg_speed: 0
+    avg_match: 0
+    user_tags: []
+    history: []
+
+  - skill_name: baoyu-markdown-to-html
+    capability: typesetting
+    total_calls: 0
+    success_count: 0
+    fail_count: 0
+    avg_quality: 0
+    avg_speed: 0
+    avg_match: 0
+    user_tags: []
+    history: []
+
+  - skill_name: official-account-assistant
+    capability: typesetting
+    total_calls: 0
+    success_count: 0
+    fail_count: 0
+    avg_quality: 0
+    avg_speed: 0
+    avg_match: 0
+    user_tags: []
+    history: []
+
+  - skill_name: baoyu-post-to-wechat
+    capability: publish
+    total_calls: 0
+    success_count: 0
+    fail_count: 0
+    avg_quality: 0
+    avg_speed: 0
+    avg_match: 0
+    user_tags: []
+    history: []
+
+  - skill_name: xxb-tavily-search
+    capability: search
+    total_calls: 0
+    success_count: 0
+    fail_count: 0
+    avg_quality: 0
+    avg_speed: 0
+    avg_match: 0
+    user_tags: []
+    history: []
+
+# 路由权重（由 Pipeline 根据 feedback 自动计算）
+# 权重越高，自动路由时优先选择
+routing_weights:
+  image_generation:
+    baoyu-imagine: 1.0
+    xxb-qwen-image: 1.0
+    xxb-nanobanana2-image: 1.0
+  cover_image:
+    baoyu-cover-image: 1.0
+    baoyu-imagine: 0.8
+  typesetting:
+    baoyu-markdown-to-html: 1.0
+    official-account-assistant: 1.0
+  publish:
+    baoyu-post-to-wechat: 1.0
+    official-account-assistant: 0.9
+  search:
+    xxb-tavily-search: 1.0
+
+# 最近一次权重更新时间
+last_weight_update: ""
+
